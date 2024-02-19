@@ -31,7 +31,7 @@ const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 console.log(avatar)
 console.log(coverImage)
 
-//if(!avatar) throw new ApiError(400, "AVATAR IS REQUIRED")
+if(!avatar) throw new ApiError(400, "AVATAR IS REQUIRED")
 
 const user = await User.create({
     fullName,
