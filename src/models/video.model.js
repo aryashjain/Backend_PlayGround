@@ -42,6 +42,7 @@ const videoSchema = new Schema(
     }
 )
 
+// TODO -: learn .plugin
 videoSchema.plugin(mongooseAggregatePaginate)
 
 export const Video = mongoose.model("Video", videoSchema)

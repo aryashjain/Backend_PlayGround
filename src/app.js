@@ -18,11 +18,15 @@ app.use(cookieParser())
 
 
 // routes
-import userRouter from './routes/user.routes.js'
+
+import userRoute from "./routes/user.route.js"
+import healthCheck from "./routes/healthcheck.route.js";
+import testRoute from "./routes/testRoute.route.js"
 
 // routes declare
-app.get('/',(req,res)=>{
-res.send("JAI SHREE RAM")})
-app.use("api/v1/users",userRouter);
+
+app.use("/users",userRoute);
+app.use("/yo",healthCheck)
+app.use("/test",testRoute)
 
 export { app }
