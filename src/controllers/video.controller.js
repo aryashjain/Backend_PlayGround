@@ -81,9 +81,10 @@ const updateVideo = asyncHandler(async (req, res) => {
      const thumbnailObject = await uploadOnCloudinary(thumbnailLocalPath);
      if(!thumbnailObject) throw new ApiError(500,"Unable to upload on cloudnary");
      const videoObj = await Video.findByIdAndUpdate(videoId, {
-        title: title,
+        $set:{ title: title,
         description: description,
         thumbnail: thumbnailObject?.url
+        }
      }, {
          new:true
      })
@@ -119,8 +120,10 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
         console.log(videoId)
         if(!videoId || !status) throw new ApiError(403,"Bad Params",videoId);
         const videoObj = await Video.findByIdAndUpdate(videoId, {
-          isPublished: status.toLowerCase().trim()==='true'?true:false
-         }, {
+            $set:{ 
+                isPublished: status.toLowerCase().trim()==='true'?true:false
+            }
+        }, {
              new:true
          })
          if(!videoObj) throw new ApiError(403,"unable to update the status")
